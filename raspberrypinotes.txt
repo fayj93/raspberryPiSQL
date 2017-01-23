@@ -1,0 +1,56 @@
+WEB SERVER
+
+STEP ZERO
+
+  Install mysql
+
+    https://www.stewright.me/2014/06/tutorial-install-mysql-server-on-raspberry-pi/
+
+STEP ONE
+    http://raspberrywebserver.com/sql-databases/
+    1) $ Install sqllite
+        $ sudo apt-get install sqlite3
+
+    2)The SQLite libraries are supplied with an SQLite shell. Use this command to invoke the shell and create a database:
+        $ sqlite3 mydatabase.db
+
+    3) The file mydatabase.db doesn't exist yet. It will be created when I commit changes
+    to the database. After typing the command above, a prompt appears where I can enter
+    commands. The shell supports two types of commands. Commands that start with a '.'
+    are used to control the shell. Try typing these commands:
+      sqlite> .help
+      sqlite> .show
+        INFO- http://raspberrywebserver.com/sql-databases/
+
+    4) Using SQL to access databases
+        -Structured Query Language (SQL) is a language that's used for interacting with databases.
+        It can be used to create tables, insert data and search for data. SQL works with different
+        database solutions such as SQLite, MySQL, Oracle and others. SQL statements must have a ';' on the end.
+        It's common for SQL commands to be capitalized, but this isn't striclty necessary. Some people argue that
+         using capitals increases readability because it's easier to distinguish between SQL commands and everything else.
+
+
+        - storing images as BLOB data type
+                https://www.b4x.com/android/forum/threads/how-to-export-a-sqlite-blob-field-containing-a-jpg-file-as-part-of-a-text-file.27634/
+
+
+         -create a simple database that could be used for logging temperatures in different parts of a home. The first thing
+         to do is create a table:
+          BEGIN;
+          CREATE TABLE images (tdate DATE, ttime TIME, title TEXT, picfile BINARY);
+          COMMIT;
+
+                  This creates a table with columns labelled tdate, ttime, zone and temperature. Their
+               respective types are DATE, TIME, TEXT and NUMERIC. Don't forget the semi-colons at the
+               end of each line. Next we need to add some data:
+          BEGIN;
+          INSERT INTO images values(date('now', '-1 day'), time('now'), "imageONE", );
+          INSERT INTO images values(date('now', '-1 day'), time('now'), "imageTWO", );
+          INSERT INTO images values(date('now', '-1 day'), time('now'), "imageTHREE", );
+          INSERT INTO images values(date('now'), time('now', '-12 hours'), "imageFOUR", );
+          INSERT INTO images values(date('now'), time('now', '-12 hours'), "imageFIVE", );
+          INSERT INTO images values(date('now'), time('now', '-12 hours'), "imageSIX", );
+          INSERT INTO images values(date('now'), time('now'), "imageSEVEN", );
+          INSERT INTO images values(date('now'), time('now'), "imageEIGHT", );
+          INSERT INTO images values(date('now'), time('now'), "imageNINE", );
+          COMMIT;
